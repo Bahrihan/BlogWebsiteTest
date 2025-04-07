@@ -1,2 +1,3 @@
 # BlogWebsiteTest
-My blog website with firebase cloud and next.js
+My blog website with Firebase Cloud and Next.js
+Simple static blog website for learning cloud and testing some features.
