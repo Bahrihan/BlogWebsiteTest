@@ -3,30 +3,20 @@ import Head from 'next/head';
 
 const Home = () => {
   const [isVisible, setIsVisible] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false); // Menü açılma durumu
 
   useEffect(() => {
-    // Sayfa kaydırıldığında butonu göstermek için event listener ekle
     const handleScroll = () => {
-      if (window.scrollY > 300) { // Kaydırma 300px'den fazla olduğunda
-        setIsVisible(true);
-      } else {
-        setIsVisible(false);
-      }
+      setIsVisible(window.scrollY > 300);
     };
 
     window.addEventListener("scroll", handleScroll);
 
-    // Temizleme işlemi
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   const scrollToTop = () => {
-    window.scrollTo({
-      top: 0,
-      behavior: 'smooth',
-    });
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   return (
@@ -38,8 +28,14 @@ const Home = () => {
 
       <header>
         <h1>Bahrihan Torpil</h1>
+        <button 
+          className="menu-toggle" 
+          onClick={() => setMenuOpen(!menuOpen)} // Hamburger menü açma/kapama
+        >
+          ☰
+        </button>
         <nav>
-          <ul>
+          <ul className={menuOpen ? "active" : ""}>
             <li><a href="#home">Home</a></li>
             <li><a href="#about">About</a></li>
             <li><a href="#education">Education</a></li>
@@ -51,13 +47,11 @@ const Home = () => {
       </header>
 
       <section id="home">
-        <p style={{ fontWeight: 'bold', fontSize: '2rem', color: '#8e44ad' }}>Bahrihan Torpil</p>
-        <p style={{ display: 'inline-block', marginBottom: '10px', borderBottom: '2px solid #8e44ad', paddingBottom: '2px' }}>
+        <p style={{ fontWeight: 'bold', fontSize: '2rem', color: '#1e293b' }}>Bahrihan Torpil</p>
+        <p style={{ display: 'inline-block', marginBottom: '10px', borderBottom: '2px solid rgb(38, 51, 114)', paddingBottom: '2px' }}>
           Data Science | Machine Learning | Software Development
         </p>
       </section>
-
-
 
       <section id="about">
         <h2>About</h2>
@@ -68,7 +62,6 @@ const Home = () => {
         <h2>Education</h2>
         <ul>
           <li>Bachelor's Degree in Computer Science - Ege University</li>
-          <li>Master's Degree in Software Engineering - ABC University</li>
         </ul>
       </section>
 
@@ -93,7 +86,6 @@ const Home = () => {
         <p>Phone: +90 553 005 8989</p>
       </section>
 
-      {/* Yukarı Git Butonu */}
       {isVisible && (
         <button 
           onClick={scrollToTop} 
@@ -115,12 +107,12 @@ const Home = () => {
           ↑
         </button>
       )}
-      
+
       <footer>
         <p>&copy; 2025 Bahrihan Torpil. All Rights Reserved.</p>
       </footer>
     </div>
-  )
+  );
 }
 
-export default Home
+export default Home;
