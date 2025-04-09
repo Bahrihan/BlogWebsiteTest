@@ -24,6 +24,13 @@ const Home = () => {
       <Head>
         <title>Bahrihan Torpil</title>
         <meta name="description" content="Kişisel web sayfamda kendimi tanıtıyor, yeteneklerimi, eğitimimi ve deneyimlerimi paylaşıyorum." />
+        <link
+          rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+          integrity="sha512-Zs+A3Fz1MfmpSvhHxLz5EcdtKZPjz+oUEz8N7J30TZZeI2Sg9u9+Zgk3IPin1NzvWj+RblwEN3+w8+GVx64FQg=="
+          crossorigin="anonymous"
+          referrerpolicy="no-referrer"
+        />
       </Head>
 
       <header>
@@ -47,8 +54,8 @@ const Home = () => {
       </header>
 
       <section id="home">
-        <p style={{ fontWeight: 'bold', fontSize: '2rem', color: '#1e293b' }}>Bahrihan Torpil</p>
-        <p style={{ display: 'inline-block', marginBottom: '10px', borderBottom: '2px solid rgb(38, 51, 114)', paddingBottom: '2px' }}>
+        <p style={{ fontWeight: 'bold', fontSize: '2rem', color: '#cb8d70' }}>Bahrihan Torpil</p>
+        <p style={{ display: 'inline-block', marginBottom: '10px', borderBottom: '2px solid #cb8d70', paddingBottom: '2px' }}>
           Data Science | Machine Learning | Software Development
         </p>
       </section>
@@ -82,8 +89,10 @@ const Home = () => {
 
       <section id="contact">
         <h2>Contact</h2>
-        <p>Email: bahrihant9@gmail.com</p>
-        <p>Phone: +90 553 005 8989</p>
+        <p><i className="fas fa-envelope"></i> <a href="mailto:bahrihant9@gmail.com">bahrihant9@gmail.com</a></p>
+        <p><i className="fas fa-phone-alt"></i> <a href="tel:+905530058989">+90 553 005 8989</a></p>
+        <p><i className="fab fa-linkedin"></i> <a href="https://www.linkedin.com/in/bahrihan-torpil-558421247/" target="_blank">LinkedIn</a></p>
+        <p><i className="fab fa-github"></i> <a href="https://github.com/Bahrihan" target="_blank">GitHub</a></p>
       </section>
 
       {isVisible && (
@@ -93,7 +102,7 @@ const Home = () => {
             position: 'fixed',
             bottom: '30px',
             right: '30px',
-            backgroundColor: '#8e44ad',
+            backgroundColor: '#964b00',
             color: 'white',
             border: 'none',
             padding: '10px 20px',
