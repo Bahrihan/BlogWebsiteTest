@@ -24,13 +24,6 @@ const Home = () => {
       <Head>
         <title>Bahrihan Torpil</title>
         <meta name="description" content="Kişisel web sayfamda kendimi tanıtıyor, yeteneklerimi, eğitimimi ve deneyimlerimi paylaşıyorum." />
-        <link
-          rel="stylesheet"
-          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
-          integrity="sha512-Zs+A3Fz1MfmpSvhHxLz5EcdtKZPjz+oUEz8N7J30TZZeI2Sg9u9+Zgk3IPin1NzvWj+RblwEN3+w8+GVx64FQg=="
-          crossorigin="anonymous"
-          referrerpolicy="no-referrer"
-        />
       </Head>
 
       <header>
@@ -74,13 +67,36 @@ const Home = () => {
 
       <section id="skills">
         <h2>Skills</h2>
-        <ul>
-          <li>JavaScript</li>
-          <li>React.js</li>
-          <li>Node.js</li>
-          <li>Python</li>
-        </ul>
+
+        <div className="skill">
+          <span>Java</span>
+          <div className="skill-bar">
+            <div className="skill-progress" style={{ width: "60%" }}></div>
+          </div>
+        </div>
+
+        <div className="skill">
+          <span>Python</span>
+          <div className="skill-bar">
+            <div className="skill-progress" style={{ width: "75%" }}></div>
+          </div>
+        </div>
+
+        <div className="skill">
+          <span>React.js</span>
+          <div className="skill-bar">
+            <div className="skill-progress" style={{ width: "70%" }}></div>
+          </div>
+        </div>
+
+        <div className="skill">
+          <span>Unity</span>
+          <div className="skill-bar">
+            <div className="skill-progress" style={{ width: "65%" }}></div>
+          </div>
+        </div>
       </section>
+
 
       <section id="experience">
         <h2>Experience</h2>
