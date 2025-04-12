@@ -2,20 +2,26 @@ import { useEffect, useState } from "react";
 import Head from 'next/head';
 import { db } from "../lib/firebase-config";
 import { collection, getDocs } from "firebase/firestore";
-import { FiPlus, FiMinus } from 'react-icons/fi';
+import { FiPlus} from 'react-icons/fi';
+import { FaLock, FaUnlock } from 'react-icons/fa';
 
 const Home = () => {
   const [isVisible, setIsVisible] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false); // Menü açılma durumu
+  const [experiences, setExperiences] = useState([]);
+  const [activeIndex, setActiveIndex] = useState(null);
+  const [scrollLocked, setScrollLocked] = useState(true); // Scroll kilidi durumu
+  const [unlocked, setUnlocked] = useState(false);
+  const [showImageModal, setShowImageModal] = useState(false);
 
   useEffect(() => {
-    const handleScroll = () => {
+    const handleScrollVisibility = () => {
       setIsVisible(window.scrollY > 300);
     };
-
-    window.addEventListener("scroll", handleScroll);
-
-    return () => window.removeEventListener("scroll", handleScroll);
+  
+    window.addEventListener("scroll", handleScrollVisibility);
+  
+    return () => window.removeEventListener("scroll", handleScrollVisibility);
   }, []);
 
   useEffect(() => {
@@ -35,8 +41,7 @@ const Home = () => {
     fetchExperiences();
   }, []);
 
-  const [experiences, setExperiences] = useState([]);
-  const [activeIndex, setActiveIndex] = useState(null);
+
 
   const toggleExperience = (index) => {
     setActiveIndex(activeIndex === index ? null : index);
@@ -46,6 +51,30 @@ const Home = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
+
+  useEffect(() => {
+    if (scrollLocked) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'auto';
+    }
+  }, [scrollLocked]);
+
+  const handleScroll = (e, id) => {
+    e.preventDefault();
+    if (scrollLocked) return;
+    const element = document.getElementById(id);
+    if (element) {
+      const elementTop = element.getBoundingClientRect().top + window.scrollY;
+      const offset = window.innerHeight / 2 - element.offsetHeight / 2;
+      window.scrollTo({
+        top: elementTop - offset,
+        behavior: 'smooth',
+      });
+    }
+  };
+  
+  
   return (
     <div>
       <Head>
@@ -54,7 +83,16 @@ const Home = () => {
       </Head>
 
       <header>
-        <h1>Bahrihan Torpil</h1>
+        <div className="logo-box">
+        <img
+          src="/img/profile.jpg"
+          alt="Bahrihan Torpil"
+          className="profile-pic"
+          onClick={() => setShowImageModal(true)}
+          style={{ cursor: "pointer" }}
+        />
+          <h1>Bahrihan Torpil</h1>
+        </div>
         <button 
           className="menu-toggle" 
           onClick={() => setMenuOpen(!menuOpen)} // Hamburger menü açma/kapama
@@ -63,36 +101,53 @@ const Home = () => {
         </button>
         <nav>
           <ul className={menuOpen ? "active" : ""}>
-            <li><a href="#home">Home</a></li>
-            <li><a href="#about">About</a></li>
-            <li><a href="#education">Education</a></li>
-            <li><a href="#skills">Skills</a></li>
-            <li><a href="#experience">Experience</a></li>
-            <li><a href="#contact">Contact</a></li>
+          <li><a href="#home" onClick={(e) => handleScroll(e, 'home')}>Home</a></li>
+          <li><a href="#about" onClick={(e) => handleScroll(e, 'about')}>About</a></li>
+          <li><a href="#education" onClick={(e) => handleScroll(e, 'education')}>Education</a></li>
+          <li><a href="#skills" onClick={(e) => handleScroll(e, 'skills')}>Skills</a></li>
+          <li><a href="#experience" onClick={(e) => handleScroll(e, 'experience')}>Experience</a></li>
+          <li><a href="#contact" onClick={(e) => handleScroll(e, 'contact')}>Contact</a></li>
           </ul>
         </nav>
       </header>
+      {showImageModal && (
+        <div className="image-modal" onClick={() => setShowImageModal(false)}>
+          <div className="image-modal-content">
+            <img src="/img/profile.jpg" alt="Bahrihan Torpil" />
+          </div>
+        </div>
+      )}
+      <div id="home" className="hero">
+        <div className="home-content">
+          <h1>Bahrihan Torpil</h1>
+          <p className="subtitle">Data Science · Machine Learning · Software Development</p>
+          <div className="scroll-down" onClick={() => {
+            setScrollLocked(false);
+            setUnlocked(true);
+            document.getElementById('about').scrollIntoView({ behavior: 'smooth' });
+          }}>
+            <span className="arrow">↓</span>
+            <p className="scroll-text">Click Here To Unlock</p>
+            <span className="lock-icon">
+              {unlocked ? <FaUnlock /> : <FaLock />}
+            </span>
+          </div>
+        </div>
+      </div>
 
-      <section id="home">
-        <p style={{ fontWeight: 'bold', fontSize: '2rem', color: '#cb8d70' }}>Bahrihan Torpil</p>
-        <p style={{ display: 'inline-block', marginBottom: '10px', borderBottom: '2px solid #cb8d70', paddingBottom: '2px' }}>
-          Data Science | Machine Learning | Software Development
-        </p>
-      </section>
-
-      <section id="about">
+      <section id="about" data-aos="fade-up">
         <h2>About</h2>
         <p>Hello, I’m Bahrihan Torpil, a 3rd-year Computer Engineering student at Ege University. I have experience in software development and programming. I am proficient in C# and Java and have worked on game and application development using Unity. Additionally, I have knowledge in database management and design, as well as object-oriented programming (OOP) analysis and design. I am also actively learning and working in the fields of Data Science and Machine Learning.</p>
       </section>
 
-      <section id="education">
+      <section id="education" data-aos="fade-up">
         <h2>Education</h2>
         <ul>
           <li>Bachelor's Degree in Computer Science - Ege University</li>
         </ul>
       </section>
 
-      <section id="skills">
+      <section id="skills" data-aos="fade-up">
         <h2>Skills</h2>
 
         <div className="skill">
@@ -125,7 +180,7 @@ const Home = () => {
       </section>
 
 
-      <section id="experience">
+      <section id="experience" data-aos="fade-up">
         <h2>Experience</h2>
 
         {experiences.length === 0 ? (
@@ -147,7 +202,7 @@ const Home = () => {
         )}
       </section>
 
-      <section id="contact">
+      <section id="contact" data-aos="fade-up">
         <h2>Contact</h2>
         <p><i className="fas fa-envelope"></i> <a href="mailto:bahrihant9@gmail.com">bahrihant9@gmail.com</a></p>
         <p><i className="fas fa-phone-alt"></i> <a href="tel:+905530058989">+90 553 005 8989</a></p>
