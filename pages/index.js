@@ -1,5 +1,8 @@
 import { useEffect, useState } from "react";
 import Head from 'next/head';
+import { db } from "../lib/firebase-config";
+import { collection, getDocs } from "firebase/firestore";
+import { FiPlus, FiMinus } from 'react-icons/fi';
 
 const Home = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -14,6 +17,30 @@ const Home = () => {
 
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
+  useEffect(() => {
+    const fetchExperiences = async () => {
+      try {
+        const querySnapshot = await getDocs(collection(db, "experiences"));
+        const expData = querySnapshot.docs.map(doc => ({
+          id: doc.id,
+          ...doc.data()
+        }));
+        setExperiences(expData);
+      } catch (error) {
+        console.error("Firestore verileri alınamadı:", error);
+      }
+    };
+  
+    fetchExperiences();
+  }, []);
+
+  const [experiences, setExperiences] = useState([]);
+  const [activeIndex, setActiveIndex] = useState(null);
+
+  const toggleExperience = (index) => {
+    setActiveIndex(activeIndex === index ? null : index);
+  };
 
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -100,7 +127,24 @@ const Home = () => {
 
       <section id="experience">
         <h2>Experience</h2>
-        <p>Bir süre çalıştığım projeler ve iş deneyimlerimi buraya ekleyeceğiz.</p>
+
+        {experiences.length === 0 ? (
+          <p style={{ textAlign: "center", color: "#964b00" }}>Yükleniyor...</p>
+        ) : (
+          experiences.map((exp, index) => (
+            <div className="exp-box" key={exp.id}>
+              <div className="exp-header" onClick={() => toggleExperience(index)}>
+                <h3>{exp.title}</h3>
+                <span className={`icon-box ${activeIndex === index ? "rotated" : ""}`}>
+                  <FiPlus />
+                </span>
+              </div>
+              <div className={`exp-body ${activeIndex === index ? "active" : ""}`}>
+                <p>{exp.description}</p>
+              </div>
+            </div>
+          ))
+        )}
       </section>
 
       <section id="contact">

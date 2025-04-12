@@ -69,7 +69,8 @@ h2 {
   text-align: center;
   color: #cb8d70;
   font-size: 1.8rem;
-  margin-bottom: 20px;
+  margin-bottom: 30px;
+  margin-top: 10px;
 }
 
 /* Paragraflar ve Listeler */
@@ -198,9 +199,112 @@ footer {
   border-radius: 10px;
 }
 
+.exp-box {
+  background-color: #f5e8df;
+  border: 1px solid #cb8d70;
+  border-radius: 10px;
+  margin-bottom: 20px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.exp-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 20px;
+  background-color: #f0d8c5;
+  cursor: pointer;
+  width: 100%; /* 💥 BU satır eklenecek */
+  box-sizing: border-box; /* padding overflow sorunlarını engeller */
+  transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+.exp-header:hover {
+  background-color: #e8cbb3;
+  transform: translateY(-5px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+}
+
+.exp-header h3 {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #964b00;
+  margin: 0;
+}
+
+.exp-header h3::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 0%;
+  height: 2px;
+  background-color: #cb8d70;
+  transition: width 0.3s ease-in-out;
+}
+
+.exp-header:hover h3::after {
+  width: 100%;
+}
+
+.exp-header span {
+  font-size: 1.5rem;
+  color: #a3694a;
+  transition: background-color 0.3s ease;
+}
+
+/* Açıkken aşağı ok yukarı dönsün istersek */
+.exp-header span.rotate {
+  transform: rotate(180deg);
+}
+
+.exp-body {
+  max-height: 0;
+  opacity: 0;
+  overflow: hidden;
+  padding: 0 20px;
+  background-color: #fffaf7;
+  border-top: 1px solid #e0bfa5;
+  transition: max-height 0.5s ease, opacity 0.3s ease, padding 0.3s ease;
+}
+
+.exp-body.active {
+  max-height: 500px;
+  opacity: 1;
+  padding: 15px 20px;
+}
+
+
+.icon-box {
+  display: inline-block;
+  transition: transform 0.3s ease;
+}
+
+.icon-box svg {
+  transition: transform 0.3s ease;
+  font-size: 1.4rem;
+  color: #a3694a;
+}
+
+.icon-box.rotated svg {
+  transform: rotate(45deg); /* + simgesi -> × görünümüne dönüşür */
+}
 
 
 /* Mobil görünüm */
+
+@media (max-width: 768px) {
+  .exp-header h3 {
+    font-size: 1rem;
+  }
+
+  .exp-body {
+    font-size: 0.95rem;
+  }
+}
+
 @media (max-width: 768px) {
   nav ul {
     display: none;
