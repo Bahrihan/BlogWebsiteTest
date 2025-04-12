@@ -25,6 +25,11 @@ const Home = () => {
   }, []);
 
   useEffect(() => {
+    // Sayfa yenilendiğinde en başa scroll
+    window.scrollTo({ top: 0, behavior: 'auto' });
+  }, []);
+
+  useEffect(() => {
     const fetchExperiences = async () => {
       try {
         const querySnapshot = await getDocs(collection(db, "experiences"));
@@ -47,10 +52,22 @@ const Home = () => {
     setActiveIndex(activeIndex === index ? null : index);
   };
 
-  const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+  const scrollToAbout = () => {
+    const element = document.getElementById("about");
+    if (element) {
+      const yOffset = -80; // header yüksekliği varsa ayarlarsın
+      const y = element.getBoundingClientRect().top + window.scrollY + yOffset;
+      window.scrollTo({ top: y, behavior: 'smooth' });
+    }
   };
 
+  useEffect(() => {
+    if ('scrollRestoration' in history) {
+      history.scrollRestoration = 'manual';
+    }
+  
+    window.scrollTo({ top: 0, behavior: 'auto' });
+  }, []);
 
   useEffect(() => {
     if (scrollLocked) {
@@ -101,7 +118,7 @@ const Home = () => {
         </button>
         <nav>
           <ul className={menuOpen ? "active" : ""}>
-          <li><a href="#home" onClick={(e) => handleScroll(e, 'home')}>Home</a></li>
+          {/*<li><a href="#home" onClick={(e) => handleScroll(e, 'home')}>Home</a></li>*/}
           <li><a href="#about" onClick={(e) => handleScroll(e, 'about')}>About</a></li>
           <li><a href="#education" onClick={(e) => handleScroll(e, 'education')}>Education</a></li>
           <li><a href="#skills" onClick={(e) => handleScroll(e, 'skills')}>Skills</a></li>
@@ -212,7 +229,7 @@ const Home = () => {
 
       {isVisible && (
         <button 
-          onClick={scrollToTop} 
+          onClick={scrollToAbout} 
           style={{
             position: 'fixed',
             bottom: '30px',
