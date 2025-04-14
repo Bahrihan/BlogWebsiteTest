@@ -97,7 +97,7 @@ ul li {
   width: 100vw;
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
   text-align: center;
   flex-direction: column;
   padding: 0 20px;
@@ -110,7 +110,8 @@ ul li {
   flex-direction: column;
   align-items: center;
   gap: 12px;
-  margin-bottom: 80px; /* 💥 Scroll yazısına yer açar */
+  margin-bottom: 20px;
+  margin-top: 100px;
 }
 
 .hero h1 {
@@ -120,32 +121,10 @@ ul li {
 }
 
 .hero .subtitle {
-  font-size: 1.4rem;
+  font-size: 2rem;
   color: #cb8d70;
   font-weight: 500;
   margin-bottom: 40px;
-}
-
-.scroll-down {
-  text-align: center;
-  cursor: pointer;
-  position: absolute;
-  bottom: 30px;
-  left: 50%;
-  transform: translateX(-50%);
-}
-
-.scroll-text {
-  font-size: 1.1rem;
-  color: #a3694a;
-  margin-bottom: 8px;
-  font-weight: 500;
-}
-
-.scroll-down .arrow {
-  font-size: 2.8rem;
-  color: #cb8d70;
-  animation: bounce 2s infinite;
 }
 
 @keyframes bounce {
@@ -358,36 +337,43 @@ footer {
   text-align: center;
   cursor: pointer;
   position: absolute;
-  bottom: 30px;
+  bottom: 80px; /* daha yukarı alıyoruz */
   left: 50%;
   transform: translateX(-50%);
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 5px;
+  gap: 8px;
+  padding: 12px 20px;
+  transition: transform 0.3s ease;
+}
+
+.scroll-down:hover {
+  transform: translateX(-50%) scale(1.05);
+}
+
+.scroll-text {
+  font-size: 1.15rem;
+  color: #a3694a;
+  font-weight: 600;
+  margin-bottom: 2px;
 }
 
 .arrow {
-  font-size: 2.8rem;
+  font-size: 3rem;
   color: #cb8d70;
   animation: bounce 2s infinite;
 }
 
-.scroll-text {
-  font-size: 1.1rem;
-  color: #a3694a;
-  font-weight: 500;
-  margin-bottom: 2px;
-}
-
 .lock-icon {
-  font-size: 2rem;
+  font-size: 3rem;
   color: #a3694a;
+  margin-top: 6px;
   transition: transform 0.4s ease;
 }
 
 .lock-icon:hover {
-  transform: scale(1.1) rotate(8deg);
+  transform: scale(1.1) rotate(10deg);
 }
 
 .logo-box {
@@ -808,10 +794,6 @@ footer {
     width: 50px;
     height: 50px;
     padding: 10px;
-  }
-
-  .scroll-down {
-    bottom: 75px;
   }
 
   .about-actions {

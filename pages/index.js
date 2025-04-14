@@ -167,8 +167,7 @@ const Home = () => {
       )}
       <div id="home" className="hero">
         <div className="home-content">
-          <h1>Bahrihan Torpil</h1>
-          <p className="subtitle">Data Science · Machine Learning · Software Development</p>
+          <h1 className="subtitle">Data Science · Machine Learning · Software Development</h1>
           <div className="scroll-down" onClick={() => {
             setScrollLocked(false);
             setUnlocked(true);
