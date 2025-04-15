@@ -86,7 +86,7 @@ const Home = () => {
   const scrollToAbout = () => {
     const element = document.getElementById("about");
     if (element) {
-      const yOffset = -80; // header yüksekliği varsa ayarlarsın
+      const yOffset = -80;
       const y = element.getBoundingClientRect().top + window.scrollY + yOffset;
       window.scrollTo({ top: y, behavior: 'smooth' });
     }
@@ -181,6 +181,8 @@ const Home = () => {
           </div>
         </div>
       </div>
+
+      <div className="vertical-gradient-divider" />
 
       <section id="about" data-aos="fade-up" className="about-section">
         <h2>About</h2>
@@ -356,7 +358,6 @@ const Home = () => {
             position: 'fixed',
             bottom: '30px',
             right: '30px',
-            backgroundColor: '#964b00',
             color: 'white',
             border: 'none',
             padding: '10px 20px',

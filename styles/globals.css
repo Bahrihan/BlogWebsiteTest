@@ -1,3 +1,12 @@
+
+:root {
+  --primary: #2F3E46;
+  --secondary: #354F52;
+  --accent: #52796F;
+  --muted: #84A98C;
+  --light-bg: #CAD2C5;
+}
+
 /* Sayfada smooth scroll */
 html {
   scroll-behavior: smooth;
@@ -11,6 +20,10 @@ html {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
+body {
+  background-color: #e0e0e0;
+}
+
 
 /* Header */
 header {
@@ -18,7 +31,7 @@ header {
   justify-content: space-between;
   align-items: center;
   padding: 20px 40px;
-  background-color: #964b00;
+  background-color: var(--primary);
   position: sticky;
   top: 0;
   z-index: 10;
@@ -27,7 +40,7 @@ header {
 /* Başlık */
 h1 {
   font-size: 2.5rem;
-  color: #F5E8DF;
+  color: var(--light-bg);
   font-weight: 700;
 }
 
@@ -39,7 +52,7 @@ nav ul {
 }
 
 nav ul li a {
-  color: #F5E8DF;
+  color: var(--light-bg);
   text-decoration: none;
   font-weight: 600;
   padding: 10px 14px;
@@ -48,12 +61,19 @@ nav ul li a {
 }
 
 nav ul li a:hover {
-  background-color: #b58667;
+  background-color: var(--accent);
+}
+
+/* div yumuşak geçiş çizgisi*/
+.vertical-gradient-divider {
+  height: 100px;
+  width: 100%;
+  background: linear-gradient(to bottom, var(--light-bg), #e0e0e0);
 }
 
 /* Genel Section Stili */
 section {
-  background-color: #F5E8DF;
+  background-color: var(--light-bg);
   border-radius: 12px;
   padding: 40px 30px;
   margin: 40px auto;
@@ -68,7 +88,7 @@ section {
 /* Section Başlıkları */
 h2 {
   text-align: center;
-  color: #cb8d70;
+  color: var(--accent);
   font-size: 1.8rem;
   margin-bottom: 30px;
   margin-top: 10px;
@@ -78,7 +98,7 @@ h2 {
 p {
   font-size: 1.1rem;
   line-height: 1.8;
-  color: #cb8d70;
+  color: var(--accent);
 }
 
 ul {
@@ -87,12 +107,12 @@ ul {
 
 ul li {
   margin-bottom: 10px;
-  color: #D19C83;
+  color: var(--muted);
 }
 
 /* Home Bölümü */
 .hero {
-  background-color: #f5e8df;
+  background-color: var(--light-bg);
   height: 90vh;
   width: 100vw;
   display: flex;
@@ -116,13 +136,13 @@ ul li {
 
 .hero h1 {
   font-size: 3.2rem;
-  color: #964b00;
+  color: var(--primary);
   margin-bottom: 10px;
 }
 
 .hero .subtitle {
   font-size: 2rem;
-  color: #cb8d70;
+  color: var(--accent);
   font-weight: 500;
   margin-bottom: 40px;
 }
@@ -139,7 +159,7 @@ ul li {
 #home p {
   font-size: 1.4rem;
   font-weight: 600;
-  color: #cb8d70;
+  color: var(--accent);
 }
 
 /* Scroll to Top Butonu */
@@ -147,7 +167,7 @@ ul li {
   position: fixed;
   bottom: 30px;
   right: 30px;
-  background-color: #cb8d70;
+  background-color: var(--accent);
   color: white;
   border: none;
   padding: 12px 16px;
@@ -163,23 +183,15 @@ ul li {
   box-shadow: 0 6px 12px rgba(0,0,0,0.25);
 }
 
-/* Footer */
-footer {
-  text-align: center;
-  padding: 20px;
-  background-color: #F5E8DF;
-  color: #cb8d70;
-  border-top: 1px solid #cb8d70;
-  margin-top: 60px;
-  border-radius: 10px 10px 0 0;
-}
+
+
 
 /* Hamburger Menü Butonu */
 .menu-toggle {
   display: none;
   font-size: 1.8rem;
   background: none;
-  color: #cb8d70;
+  color: var(--accent);
   border: none;
   cursor: pointer;
   position: fixed;
@@ -196,7 +208,7 @@ footer {
 }
 
 #contact i {
-  color: #D19C83;
+  color: var(--muted);
   font-size: 1.2rem;
   width: 20px;
   text-align: center;
@@ -204,7 +216,7 @@ footer {
 
 #contact a {
   text-decoration: none;
-  color: #cb8d70;
+  color: var(--accent);
   font-weight: 500;
 }
 
@@ -220,12 +232,12 @@ footer {
   font-weight: 600;
   display: block;
   margin-bottom: 6px;
-  color: #964b00;
+  color: var(--primary);
 }
 
 .skill-bar {
   width: 100%;
-  background-color: #f0d8c5;
+  background-color: var(--muted);
   border-radius: 10px;
   overflow: hidden;
   height: 20px;
@@ -234,15 +246,15 @@ footer {
 
 .skill-progress {
   height: 100%;
-  background: linear-gradient(90deg, #cb8d70, #a3694a);
+  background: linear-gradient(90deg, var(--accent), var(--secondary));
   width: 0;
   transition: width 1s ease-in-out;
   border-radius: 10px;
 }
 
 .exp-box {
-  background-color: #f5e8df;
-  border: 1px solid #cb8d70;
+  background-color: var(--light-bg);
+  border: 1px solid var(--accent);
   border-radius: 10px;
   margin-bottom: 20px;
   box-shadow: 0 4px 10px rgba(0,0,0,0.05);
@@ -255,7 +267,7 @@ footer {
   justify-content: space-between;
   align-items: center;
   padding: 16px 20px;
-  background-color: #f0d8c5;
+  background-color: var(--muted);
   cursor: pointer;
   width: 100%; /* 💥 BU satır eklenecek */
   box-sizing: border-box; /* padding overflow sorunlarını engeller */
@@ -263,7 +275,7 @@ footer {
 }
 
 .exp-header:hover {
-  background-color: #e8cbb3;
+  background-color: var(--muted);
   transform: translateY(-5px);
   box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
 }
@@ -271,7 +283,7 @@ footer {
 .exp-header h3 {
   font-size: 1.1rem;
   font-weight: 600;
-  color: #964b00;
+  color: var(--primary);
   margin: 0;
 }
 
@@ -282,7 +294,7 @@ footer {
   bottom: 0;
   width: 0%;
   height: 2px;
-  background-color: #cb8d70;
+  background-color: var(--accent);
   transition: width 0.3s ease-in-out;
 }
 
@@ -292,11 +304,10 @@ footer {
 
 .exp-header span {
   font-size: 1.5rem;
-  color: #a3694a;
+  color: var(--secondary);
   transition: background-color 0.3s ease;
 }
 
-/* Açıkken aşağı ok yukarı dönsün istersek */
 .exp-header span.rotate {
   transform: rotate(180deg);
 }
@@ -306,7 +317,7 @@ footer {
   opacity: 0;
   overflow: hidden;
   padding: 0 20px;
-  background-color: #fffaf7;
+  background-color: #F5F8F6;
   border-top: 1px solid #e0bfa5;
   transition: max-height 0.5s ease, opacity 0.3s ease, padding 0.3s ease;
 }
@@ -326,7 +337,7 @@ footer {
 .icon-box svg {
   transition: transform 0.3s ease;
   font-size: 1.4rem;
-  color: #a3694a;
+  color: var(--secondary);
 }
 
 .icon-box.rotated svg {
@@ -354,20 +365,20 @@ footer {
 
 .scroll-text {
   font-size: 1.15rem;
-  color: #a3694a;
+  color: var(--secondary);
   font-weight: 600;
   margin-bottom: 2px;
 }
 
 .arrow {
   font-size: 3rem;
-  color: #cb8d70;
+  color: var(--accent);
   animation: bounce 2s infinite;
 }
 
 .lock-icon {
   font-size: 3rem;
-  color: #a3694a;
+  color: var(--secondary);
   margin-top: 6px;
   transition: transform 0.4s ease;
 }
@@ -387,7 +398,7 @@ footer {
   height: 58px;
   border-radius: 50%; /* dairesel görüntü */
   object-fit: cover;
-  border: 2px solid #F5E8DF;
+  border: 2px solid var(--light-bg);
   box-shadow: 0 0 4px rgba(0,0,0,0.2);
 }
 
@@ -451,7 +462,7 @@ footer {
   height: 180px;
   border-radius: 50%;
   object-fit: cover;
-  border: 3px solid #cb8d70;
+  border: 3px solid var(--accent);
   box-shadow: 0 4px 12px rgba(0,0,0,0.1);
 }
 
@@ -463,7 +474,7 @@ footer {
 .about-text p {
   margin-bottom: 10px;
   font-size: 1.05rem;
-  color: #a3694a;
+  color: var(--secondary);
 }
 
 .about-text ul {
@@ -473,7 +484,7 @@ footer {
 
 .about-text li {
   margin-bottom: 8px;
-  color: #964b00;
+  color: var(--primary);
   font-size: 1rem;
   list-style: none;
   position: relative;
@@ -481,7 +492,7 @@ footer {
 
 .about-text li::before {
   content: "✔";
-  color: #cb8d70;
+  color: var(--accent);
   margin-right: 8px;
 }
 
@@ -495,7 +506,7 @@ footer {
 }
 
 .cv-download {
-  background-color: #cb8d70;
+  background-color: var(--accent);
   color: white;
   padding: 10px 16px;
   border-radius: 8px;
@@ -505,13 +516,13 @@ footer {
 }
 
 .cv-download:hover {
-  background-color: #a3694a;
+  background-color: var(--secondary);
 }
 
 .toggle-details {
   background: none;
-  color: #a3694a;
-  border: 2px solid #a3694a;
+  color: var(--secondary);
+  border: 2px solid var(--secondary);
   padding: 8px 14px;
   border-radius: 8px;
   cursor: pointer;
@@ -520,9 +531,9 @@ footer {
 }
 
 .toggle-details:hover {
-  background-color: #f0d8c5;
-  color: #964b00;
-  border-color: #964b00;
+  background-color: var(--muted);
+  color: var(--primary);
+  border-color: var(--primary);
 }
 
 .more-about {
@@ -547,9 +558,9 @@ footer {
   flex-direction: row;
   align-items: flex-start;
   gap: 20px;
-  background-color: #fffaf7;
+  background-color: #F5F8F6;
   padding: 20px;
-  border-left: 4px solid #cb8d70;
+  border-left: 4px solid var(--accent);
   border-radius: 10px;
   box-shadow: 0 4px 10px rgba(0,0,0,0.06);
   transition: transform 0.3s ease;
@@ -562,19 +573,19 @@ footer {
 .edu-year {
   min-width: 130px;
   font-weight: 600;
-  color: #964b00;
+  color: var(--primary);
 }
 
 .edu-details h3 {
   margin-bottom: 6px;
   font-size: 1.1rem;
-  color: #cb8d70;
+  color: var(--accent);
 }
 
 .edu-details p {
   margin: 4px 0;
   font-size: 0.95rem;
-  color: #7c4c33;
+  color: var(--primary);
 }
 
 .skills-grid {
@@ -588,14 +599,14 @@ footer {
   justify-content: space-between;
   margin-bottom: 6px;
   font-weight: 600;
-  color: #964b00;
+  color: var(--primary);
   font-size: 1rem;
 }
 
 .skill-bar {
   width: 100%;
   height: 20px;
-  background-color: #f0d8c5;
+  background-color: var(--muted);
   border-radius: 10px;
   overflow: hidden;
   box-shadow: inset 0 1px 3px rgba(0,0,0,0.1);
@@ -603,7 +614,7 @@ footer {
 
 .skill-progress {
   height: 100%;
-  background: linear-gradient(90deg, #f2b99b, #cb8d70); /* daha açık başlangıç tonu */
+  background: linear-gradient(90deg, var(--secondary), var(--accent)); /* daha açık başlangıç tonu */
   border-radius: 10px;
   display: flex;
   align-items: center;
@@ -622,7 +633,7 @@ footer {
 
 .skill-level {
   font-size: 0.85rem;
-  color: #a3694a;
+  color: var(--secondary);
   font-weight: 500;
 }
 
@@ -637,7 +648,7 @@ footer {
 .contact-form {
   width: 100%;
   max-width: 600px;
-  background-color: #fffaf7;
+  background-color: #F5F8F6;
   padding: 30px;
   border-radius: 12px;
   box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
@@ -650,11 +661,11 @@ footer {
 .contact-form input,
 .contact-form textarea {
   padding: 14px 16px;
-  border: 2px solid #cb8d70;
+  border: 2px solid var(--accent);
   border-radius: 8px;
   font-size: 1rem;
-  color: #964b00;
-  background-color: #fefaf6;
+  color: var(--primary);
+  background-color: #F5F8F6;
   width: 100%;
   resize: none;
   overflow-y: auto;
@@ -665,7 +676,7 @@ footer {
 }
 
 .send-button {
-  background-color: #cb8d70;
+  background-color: var(--accent);
   color: white;
   font-weight: bold;
   padding: 12px 24px;
@@ -679,20 +690,18 @@ footer {
 }
 
 .send-button:hover {
-  background-color: #a3694a;
+  background-color: var(--secondary);
   transform: scale(1.05);
 }
 
 
-
+/* Footer */
 .site-footer {
   padding: 30px 20px;
-  background-color: #f5e8df;
-  border-top: 2px solid #cb8d70;
-  border-radius: 10px 10px 0 0;
+  background-color: var(--light-bg);
   margin-top: 60px;
   text-align: center;
-  color: #a3694a;
+  color: var(--secondary);
   font-size: 0.95rem;
 }
 
@@ -714,14 +723,14 @@ footer {
   display: flex;
   align-items: center;
   gap: 6px;
-  color: #a3694a;
+  color: var(--secondary);
   text-decoration: none;
   font-weight: 600;
   transition: color 0.3s ease, transform 0.2s ease;
 }
 
 .footer-links a:hover {
-  color: #964b00;
+  color: var(--primary);
   transform: scale(1.05);
 }
 
@@ -730,7 +739,7 @@ footer {
   bottom: 100px;
   left: 50%;
   transform: translateX(-50%);
-  background-color: #cb8d70;
+  background-color: var(--accent);
   color: white;
   font-weight: 500;
   padding: 14px 24px;
@@ -767,7 +776,7 @@ footer {
     position: absolute;
     top: 70px;
     right: 20px;
-    background-color: #964b00;
+    background-color: var(--primary);
     padding: 20px;
     border-radius: 10px;
     width: max-content;
@@ -834,3 +843,4 @@ footer {
     gap: 10px;
   }
 }
+
