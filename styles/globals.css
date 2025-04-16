@@ -224,33 +224,89 @@ ul li {
   text-decoration: underline;
 }
 
-.skill {
-  margin-bottom: 20px;
+/* skills section */
+.skills-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 20px;
+  margin-top: 20px;
 }
 
-.skill span {
+/* Skill kartı genel stili */
+.skill-card {
+  padding: 18px 16px;
+  border-radius: 12px;
+  color: #fff;
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+  background-color: var(--light-bg); /* fallback */
+}
+
+.skill-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+}
+
+.skill-icon {
+  font-size: 2.2rem;
+  margin-bottom: 10px;
+}
+
+.skill-name {
+  font-size: 1.15rem;
   font-weight: 600;
-  display: block;
   margin-bottom: 6px;
-  color: var(--primary);
+  color: #fff; /* default - override edilir aşağıda */
 }
 
-.skill-bar {
-  width: 100%;
-  background-color: var(--muted);
-  border-radius: 10px;
-  overflow: hidden;
-  height: 20px;
-  box-shadow: inset 0 1px 3px rgba(0,0,0,0.1);
+.skill-level {
+  font-size: 0.95rem;
+  font-weight: 500;
+  opacity: 0.95;
 }
 
-.skill-progress {
-  height: 100%;
-  background: linear-gradient(90deg, var(--accent), var(--secondary));
-  width: 0;
-  transition: width 1s ease-in-out;
-  border-radius: 10px;
+/* Seviye renk tonları (sarıdan kırmızıya) */
+.step-1 {
+  background-color: #fef3c7;
+  color: #7c4c00;
 }
+.step-1 .skill-name {
+  color: #7c4c00;
+}
+
+.step-2 {
+  background-color: #fde68a;
+  color: #7a3e00;
+}
+.step-2 .skill-name {
+  color: #7a3e00;
+}
+
+.step-3 {
+  background-color: #fcd34d;
+  color: #6c3700;
+}
+.step-3 .skill-name {
+  color: #6c3700;
+}
+
+.step-4 {
+  background-color: #f97316;
+  color: #fff;
+}
+.step-4 .skill-name {
+  color: #fff;
+}
+
+.step-5 {
+  background-color: #ef4444;
+  color: #fff;
+}
+.step-5 .skill-name {
+  color: #fff;
+}
+
 
 .exp-box {
   background-color: var(--light-bg);
@@ -540,6 +596,16 @@ ul li {
   margin-top: 16px;
   animation: fadeIn 0.3s ease-in-out;
   color: #7c4c33;
+  padding-top: 6px;
+  overflow: hidden;
+  max-height: 0;
+  opacity: 0;
+  transition: max-height 0.6s ease, opacity 0.5s ease, padding 0.3s ease;
+}
+
+.more-about.show {
+  max-height: 500px; /* içeriğe göre ayarla, gerekirse büyük bırak */
+  opacity: 1;
 }
 
 @keyframes fadeIn {
@@ -586,55 +652,6 @@ ul li {
   margin: 4px 0;
   font-size: 0.95rem;
   color: var(--primary);
-}
-
-.skills-grid {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-}
-
-.skill-header {
-  display: flex;
-  justify-content: space-between;
-  margin-bottom: 6px;
-  font-weight: 600;
-  color: var(--primary);
-  font-size: 1rem;
-}
-
-.skill-bar {
-  width: 100%;
-  height: 20px;
-  background-color: var(--muted);
-  border-radius: 10px;
-  overflow: hidden;
-  box-shadow: inset 0 1px 3px rgba(0,0,0,0.1);
-}
-
-.skill-progress {
-  height: 100%;
-  background: linear-gradient(90deg, var(--secondary), var(--accent)); /* daha açık başlangıç tonu */
-  border-radius: 10px;
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
-  padding-right: 8px;
-  transition: width 1s ease-in-out;
-  position: relative;
-}
-
-.skill-percent {
-  color: #fff; /* beyaz */
-  font-size: 0.9rem;
-  font-weight: 600;
-  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.6); /* hafif siyah gölge ile görünürlüğü artır */
-}
-
-.skill-level {
-  font-size: 0.85rem;
-  color: var(--secondary);
-  font-weight: 500;
 }
 
 

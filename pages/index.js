@@ -1,7 +1,9 @@
 import { useEffect, useState } from "react";
+import React from "react";
+import { FaJava, FaPython, FaUnity, FaCogs, FaCode, FaDatabase, FaBrain } from "react-icons/fa";
 import Head from 'next/head';
-import { db } from "../lib/firebase-config";
-import { collection, getDocs } from "firebase/firestore";
+//import { db } from "../lib/firebase-config";
+//import { collection, getDocs } from "firebase/firestore";
 import { FiPlus} from 'react-icons/fi';
 import { FaLock, FaUnlock } from 'react-icons/fa';
 import { MdEmail } from "react-icons/md";
@@ -60,7 +62,7 @@ const Home = () => {
     window.scrollTo({ top: 0, behavior: 'auto' });
   }, []);
 
-  useEffect(() => {
+  /*useEffect(() => {
     const fetchExperiences = async () => {
       try {
         const querySnapshot = await getDocs(collection(db, "experiences"));
@@ -75,8 +77,31 @@ const Home = () => {
     };
   
     fetchExperiences();
-  }, []);
+  }, []);*/
 
+  // experiences has been changed to a text file because of the firestore's database issues and for easier deployment***********
+  useEffect(() => {
+    const fetchExperiences = async () => {
+      try {
+        const response = await fetch('cv/experiences.txt');
+        const text = await response.text();
+        const lines = text.split('\n').filter(line => line.trim() !== "");
+
+        const parsedExperiences = [];
+        for (let i = 0; i < lines.length; i += 2) {
+          const title = lines[i].replace("title:", "").trim();
+          const description = lines[i + 1]?.replace("description:", "").trim();
+          parsedExperiences.push({ id: i / 2, title, description });
+        }
+
+        setExperiences(parsedExperiences);
+      } catch (error) {
+        console.error("Deneyimler yüklenirken hata oluştu:", error);
+      }
+    };
+
+    fetchExperiences();
+  }, []);
 
 
   const toggleExperience = (index) => {
@@ -122,7 +147,38 @@ const Home = () => {
     }
   };
   
+  // constant variables
+
+  const skillLevels = {
+    "Basic": 1,
+    "Lower Intermediate": 2,
+    "Intermediate": 3,
+    "Upper Intermediate": 4,
+    "Advanced": 5
+  };
   
+  // Renk class'ları
+  const skillColors = [
+    "step-1", // basic
+    "step-2",
+    "step-3",
+    "step-4",
+    "step-5"  // advanced
+  ];
+  
+  // İkonlar
+  const skillIcons = {
+    "Java": FaJava,
+    "C#": FaCode,
+    "Python": FaPython,
+    "Unity": FaUnity,
+    "Data Analysis": FaDatabase,
+    "Machine Learning": FaBrain,
+    "Data Structures & Algorithms": FaCogs
+  };
+
+  //const IconComponent = skillIcons[skill.name];
+
   return (
     <div>
       <Head>
@@ -217,7 +273,7 @@ const Home = () => {
           </div>
 
           {showMore && (
-            <div className="more-about">
+            <div className={`more-about ${showMore ? "show" : ""}`}>
               <p>
                 I have been actively developing modern web applications using <strong>React</strong> and <strong>Next.js</strong>. 
                 I also gained hands-on experience with <strong>.NET Core</strong> and <strong>ASP.NET MVC</strong> for backend web development.
@@ -259,39 +315,39 @@ const Home = () => {
 
       <section id="skills" data-aos="fade-up">
         <h2>Skills</h2>
+
         <div className="skills-grid">
           {[
-            { name: "Java", level: "Intermediate", percent: 60 },
-            { name: "C#", level: "Intermediate", percent: 50 },
-            { name: "Python", level: "Intermediate", percent: 70 },
-            { name: "Data Science", level: "Intermediate/Advanced", percent: 75 },
-            { name: "Unity", level: "Intermediate", percent: 50 },
-            { name: "Machine Learning", level: "Basic", percent: 30 },
-            { name: "Data Structures & Algorithms", level: "Intermediate/Advanced", percent: 70 }
-          ].map((skill, index) => (
-            <div className="skill" key={index}>
-              <div className="skill-header">
-                <span>{skill.name}</span>
-                <span className="skill-level">{skill.level}</span>
-              </div>
-              <div className="skill-bar">
-                <div
-                  className="skill-progress"
-                  style={{ width: `${skill.percent}%` }}
-                >
-                  <span className="skill-percent">{skill.percent}%</span>
+            { name: "Java", level: "Intermediate" },
+            { name: "C#", level: "Intermediate" },
+            { name: "Python", level: "Intermediate" },
+            { name: "Data Analysis", level: "Upper Intermediate" },
+            { name: "Unity", level: "Lower Intermediate" },
+            { name: "Machine Learning", level: "Basic" },
+            { name: "Data Structures & Algorithms", level: "Upper Intermediate" }
+          ].map((skill, index) => {
+            const colorClass = skillColors[skillLevels[skill.level] - 1];
+            const IconComponent = skillIcons[skill.name];
+            return (
+              <div className={`skill-card ${colorClass}`} key={index}>
+                <div className="skill-icon">
+                  {IconComponent && React.createElement(IconComponent)}
                 </div>
+                <div className="skill-name">{skill.name}</div>
+                <div className="skill-level">{skill.level}</div>
               </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
       </section>
+
+
 
       <section id="experience" data-aos="fade-up">
         <h2>Experience</h2>
 
         {experiences.length === 0 ? (
-          <p style={{ textAlign: "center", color: "#964b00" }}>Yükleniyor...</p>
+          <p style={{ textAlign: "center", color: "#964b00" }}>Hiç deneyim verisi bulunamadı.</p>
         ) : (
           experiences.map((exp, index) => (
             <div className="exp-box" key={exp.id}>
@@ -308,6 +364,7 @@ const Home = () => {
           ))
         )}
       </section>
+
 
       <section id="contact" data-aos="fade-up">
         <h2>Contact</h2>

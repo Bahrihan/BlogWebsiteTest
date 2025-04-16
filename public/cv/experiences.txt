@@ -1,0 +1,17 @@
+title: Social Media App with Design Patterns
+description: Developed a basic social media application with login, posting, and feed features. Applied Object-Oriented Programming principles and software design patterns such as MVC and Singleton. Built with .NET and C#, following clean code practices.
+
+title: Software Engineering @ AR ARGE Teknoloji A.Ş. ~4 Months
+description: Contributed to virtual and augmented reality projects using Unity and C#. Developed interactive VR/AR features with the Mixed Reality Toolkit (MRTK). Supported website management using HTML, CSS, and JavaScript. Collaborated in Agile development environments to enhance XR applications.
+
+title: Data Science & Machine Learning Studies
+description: Currently focused on gaining strong proficiency in Data Science and Machine Learning. Completed foundational courses and actively practicing with Python libraries such as NumPy, Pandas, Matplotlib, Scikit-learn, and SciPy. Building hands-on experience through guided projects and real datasets.
+
+title: OOP Analysis & Design – Academic Projects
+description: Participated in academic projects emphasizing object-oriented analysis and design. Practiced use case modeling, class diagrams, and sequence diagrams. Developed small-scale business logic systems with proper OOP principles and responsibility-driven design.
+
+title: Unity XR Projects using MRTK
+description: Worked on immersive AR/VR experiences as part of company projects. Utilized Unity and MRTK to build interactive scenes with gesture and voice controls. Integrated UI/UX components for enhanced user interaction in spatial environments.
+
+title: E-Commerce Database Integration with MySQL - Academic Project
+description: Designed and implemented a relational database schema for an e-commerce platform. Developed queries and views for order tracking, customer data, and product listings using MySQL. Focused on normalization and database design principles.
